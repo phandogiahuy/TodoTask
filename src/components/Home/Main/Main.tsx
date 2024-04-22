@@ -10,7 +10,6 @@ import {
 } from "antd";
 import { useGetAllUsers } from "../../../hooks/query/useGetAllUser";
 import UserComponent from "./UserComponent";
-import { TypeTable } from "../../../types/table";
 import {
   CheckCircleOutlined,
   CheckOutlined,
@@ -20,6 +19,7 @@ import { useChangeTaskById } from "../../../hooks/mutation/useChangeTaskById";
 import { useGetTaksByUserId } from "../../../hooks/query/useGetTasksByUserId";
 import { useState } from "react";
 import { User } from "../../../types/user";
+
 
 const Main = () => {
   const [id, setId] = useState(1);
@@ -79,7 +79,7 @@ const Main = () => {
     confirm(1);
   }
 
-  const user = data?.map((item) => ({ value: item.id, label: item.name }));
+  const user = data?.map((item:any) => ({ value: item.id, label: item.name }));
 
   const onChangeById = (value: number) => {
     setId(value);
@@ -93,7 +93,7 @@ const Main = () => {
     return `${taskLength}/${task.data?.length}`;
   };
   
-  const columns: TableProps<TypeTable>["columns"] = [
+  const columns: TableProps<User>["columns"] = [
     {
       title: "Status",
       dataIndex: "completed",
@@ -138,7 +138,7 @@ const Main = () => {
       title: "Action",
       dataIndex: "completed",
       key: "completed",
-      render: (value:boolean, record:User) => {
+      render: (value:boolean, record:any) => {
         return (
           <Space size="middle">
             {!value && (
